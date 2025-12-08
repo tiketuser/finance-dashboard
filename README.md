@@ -1,36 +1,22 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Finance Dashboard
 
-## Getting Started
+Finance Dashboard is a Next.js app designed for Israeli investors who want clearer, plain-language explanations of stock data. Beyond showing fundamentals (e.g., P/E, profitability, valuation), the app defines each metric, compares it to peers, and lets you ask follow-up questions so the meaning of every number is obvious before making a decision.
 
-First, run the development server:
+## What it does
+- Displays company data and key ratios with context, not just numbers.
+- Provides definitions and AI guidance (e.g., whether a P/E of 23 is expensive or cheap for the sector).
+- Supports follow-up questions so you can get a clearer explanation without leaving the page.
 
+## Folder structure
+- `app/` – Next.js App Router pages, layout, and global styles.
+- `component/` – Placeholder for shared UI components.
+- `public/` – Static assets (icons, logos, SVGs).
+- `*.config.*` – Project configuration (Next.js, ESLint, PostCSS, TypeScript).
+
+## Getting started
+Install dependencies and run the dev server:
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Then open http://localhost:3000.
