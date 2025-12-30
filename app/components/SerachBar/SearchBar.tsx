@@ -36,11 +36,9 @@ export function SearchBar() {
           value={ticker}
           onChange={(event) => setTicker(event.target.value)}
         />
-        <InputGroupAddon className="mr-3 rounded-full bg-muted/70 px-3 py-2">
+        <InputGroupAddon className="mr-3 rounded-full px-3 py-2">
           <button
             type="submit"
-            className="flex items-center justify-center text-foreground transition hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-            aria-label="Search ticker"
           >
             <SearchIcon className="size-5" />
           </button>

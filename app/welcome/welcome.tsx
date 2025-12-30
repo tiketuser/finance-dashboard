@@ -25,6 +25,7 @@ export function Welcome() {
         <Carousel
             opts={{
             align: "start",
+            loop: true,
             }}
             className="w-full max-w-5xl"
             plugins={[Autoplay({ delay: 2500 })]}
