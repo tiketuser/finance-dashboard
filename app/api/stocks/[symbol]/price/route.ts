@@ -24,8 +24,8 @@ export async function GET(
     )
   }
 
-  const url = new URL(
-    process.env.FINNHUB_API_URL ?? "https://finnhub.io/api/v1/quote"
+  const url = new URL("quote",
+    process.env.FINNHUB_API_URL ?? "https://finnhub.io/api/v1"
   )
 
   const new_params = new URLSearchParams({

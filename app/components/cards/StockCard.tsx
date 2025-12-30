@@ -14,6 +14,7 @@ type StockCardProps = {
 type StockQuote = {
   symbol: string
   price: number
+  pe: number
   changePercent?: number
   previousClose?: number
   lastUpdated?: string
@@ -31,7 +32,7 @@ export function StockCard({ symbol, className }: StockCardProps) {
       setIsLoading(true)
       setError(null)
       try {
-        const res = await fetch(`/api/stocks/${encodeURIComponent(symbol)}`, {
+        const res = await fetch(`/api/stocks/${encodeURIComponent(symbol)}/pe-ttm`, {
           signal: controller.signal,
         })
         if (!res.ok) throw new Error(`Request failed: ${res.status}`)
@@ -62,7 +63,7 @@ export function StockCard({ symbol, className }: StockCardProps) {
         <Skeleton className="h-6 w-32" />
       </div>
     )
-  } else if (error || !data || typeof data.price !== "number") {
+  } else if (error || !data || typeof data.price !== "number" || typeof data.pe !== "number") {
     content = (
       <p className="text-sm text-destructive">Unable to load price.</p>
     )
@@ -73,39 +74,35 @@ export function StockCard({ symbol, className }: StockCardProps) {
       minimumFractionDigits: 2,
     }).format(data.price)
 
+    const formattedPE = new Intl.NumberFormat({}, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }).format(data.pe)
+
     content = (
       <div className="space-y-1">
+        <p className="text-md font-semibold tracking-tight"> 
+          {formattedPE} P/E
+        </p>
         <p className="text-3xl font-semibold tracking-tight">
           {formattedPrice}
         </p>
-        {typeof data.changePercent === "number" && (
-          <p
-            className={cn(
-              "text-sm font-medium",
-              data.changePercent >= 0 ? "text-emerald-600" : "text-red-600"
-            )}
-          >
-            {data.changePercent.toFixed(2)}%
-          </p>
-        )}
-        {data.lastUpdated && (
-          <p className="text-xs text-muted-foreground">
-            Updated: {data.lastUpdated}
-          </p>
-        )}
       </div>
     )
   }
 
   return (
-    <Card className={cn("h-full", className)}>
-      <CardHeader>
-        <CardTitle className="text-lg font-semibold tracking-wide">
-          {title}
-        </CardTitle>
-      </CardHeader>
-      <CardContent>{content}</CardContent>
-    </Card>
+    <>   
+      <Card className={cn("h-full", className)}>
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold tracking-wide">
+            {title}
+          </CardTitle>
+        </CardHeader>
+        <CardContent>{content}</CardContent>
+      </Card>
+    </>
+
   )
 }
 
